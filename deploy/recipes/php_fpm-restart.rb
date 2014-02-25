@@ -4,15 +4,14 @@
 #
 
 include_recipe "deploy"
-include_recipe "apache2::service"
 
 node[:deploy].each do |application, deploy|
-  if deploy[:application_type] != 'php'
-    Chef::Log.debug("Skipping deploy::php-restart application #{application} as it is not a PHP app")
+  if deploy[:application_type] != 'php_fpm'
+    Chef::Log.debug("Skipping deploy::php_fpm-restart application #{application} as it is not a PHP-FPM app")
     next
   end
   
-  execute "restart Apache" do
+  execute "restart PHP-FPM" do
     cwd deploy[:current_path]
     command "sleep #{deploy[:sleep_before_restart]} && #{deploy[:restart_command]}"
     action :run
@@ -21,7 +20,7 @@ node[:deploy].each do |application, deploy|
       File.exists?(deploy[:current_path])
     end
     
-    notifies :restart, "service[apache2]"
+    notifies :restart, "service[php5-fpm]"
   end
     
 end
