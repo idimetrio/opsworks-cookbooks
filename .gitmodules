@@ -1,6 +1,6 @@
  [submodule "rsyslog"]
-  	path = rsyslog
-  	url = https://github.com/opscode-cookbooks/rsyslog.git
+	path = rsyslog
+	url = git://github.com/opscode-cookbooks/rsyslog.git
  [submodule "cookbook-php-fpm"]
- 	path = cookbook-php-fpm
- 	url = https://github.com/yevgenko/cookbook-php-fpm.git
+	path = cookbook-php-fpm
+	url = git://github.com/yevgenko/cookbook-php-fpm.git
